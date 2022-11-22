@@ -70,6 +70,8 @@ void Error_Handler(void);
 #define D_GPIO_Port GPIOA
 #define E_Pin GPIO_PIN_9
 #define E_GPIO_Port GPIOA
+#define F_Pin GPIO_PIN_10
+#define F_GPIO_Port GPIOA
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

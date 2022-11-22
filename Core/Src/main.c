@@ -99,6 +99,7 @@ int main(void)
   HAL_GPIO_WritePin(C_GPIO_Port, C_Pin, GPIO_PIN_RESET);
   HAL_GPIO_WritePin(D_GPIO_Port, D_Pin, GPIO_PIN_RESET);
   HAL_GPIO_WritePin(E_GPIO_Port, E_Pin, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(F_GPIO_Port, F_Pin, GPIO_PIN_SET);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -107,7 +108,8 @@ int main(void)
   SCH_Add_Task(TaskB, 1, 100);
   SCH_Add_Task(TaskC, 2, 150);
   SCH_Add_Task(TaskD, 3, 200);
-  SCH_Add_Task(TaskE, 4, 50);
+  SCH_Add_Task(TaskE, 250, 0);
+  SCH_Add_Task(TaskF, 4, 50);
   while (1)
   {
     /* USER CODE END WHILE */
@@ -212,7 +214,7 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOA, A_Pin|B_Pin|C_Pin|D_Pin
-                          |E_Pin, GPIO_PIN_RESET);
+                          |E_Pin|F_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin : BUTTON_Pin */
   GPIO_InitStruct.Pin = BUTTON_Pin;
@@ -221,9 +223,9 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_Init(BUTTON_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : A_Pin B_Pin C_Pin D_Pin
-                           E_Pin */
+                           E_Pin F_Pin */
   GPIO_InitStruct.Pin = A_Pin|B_Pin|C_Pin|D_Pin
-                          |E_Pin;
+                          |E_Pin|F_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;

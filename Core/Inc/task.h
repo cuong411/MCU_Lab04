@@ -17,5 +17,6 @@ void TaskB(void);
 void TaskC(void);
 void TaskD(void);
 void TaskE(void);
+void TaskF(void);
 
 #endif /* INC_TASK_H_ */
