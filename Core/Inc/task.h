@@ -10,6 +10,7 @@
 
 #include "main.h"
 #include "global.h"
+#include "button.h"
 
 void TaskA(void);
 void TaskB(void);

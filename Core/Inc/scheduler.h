@@ -32,8 +32,8 @@ struct sTask SCH_tasks_G[SCH_MAX_TASKS];
 
 void SCH_Init(void);
 void SCH_Update(void);
-uint32_t SCH_Add_Task(void (* pFunction)(), unsigned int DELAY, unsigned int PERIOD);
 void SCH_Dispatch_Tasks(void);
+uint32_t SCH_Add_Task(void (* pFunction)(), unsigned int DELAY, unsigned int PERIOD);
 uint8_t SCH_Delete_Task(const uint8_t TASK_INDEX);
 //void SCH_Report_Status(void);
 //void SCH_Go_To_Sleep();

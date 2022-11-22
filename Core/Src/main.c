@@ -24,6 +24,7 @@
 /* USER CODE BEGIN Includes */
 #include "global.h"
 #include "task.h"
+#include "button.h"
 #include "scheduler.h"
 /* USER CODE END Includes */
 
@@ -97,7 +98,7 @@ int main(void)
   HAL_GPIO_WritePin(B_GPIO_Port, B_Pin, GPIO_PIN_RESET);
   HAL_GPIO_WritePin(C_GPIO_Port, C_Pin, GPIO_PIN_RESET);
   HAL_GPIO_WritePin(D_GPIO_Port, D_Pin, GPIO_PIN_RESET);
-  HAL_GPIO_WritePin(E_GPIO_Port, E_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(E_GPIO_Port, E_Pin, GPIO_PIN_SET);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -106,7 +107,7 @@ int main(void)
   SCH_Add_Task(TaskB, 1, 100);
   SCH_Add_Task(TaskC, 2, 150);
   SCH_Add_Task(TaskD, 3, 200);
-  SCH_Add_Task(TaskE, 4, 250);
+  SCH_Add_Task(TaskE, 4, 50);
   while (1)
   {
     /* USER CODE END WHILE */
@@ -213,6 +214,12 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(GPIOA, A_Pin|B_Pin|C_Pin|D_Pin
                           |E_Pin, GPIO_PIN_RESET);
 
+  /*Configure GPIO pin : BUTTON_Pin */
+  GPIO_InitStruct.Pin = BUTTON_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  HAL_GPIO_Init(BUTTON_GPIO_Port, &GPIO_InitStruct);
+
   /*Configure GPIO pins : A_Pin B_Pin C_Pin D_Pin
                            E_Pin */
   GPIO_InitStruct.Pin = A_Pin|B_Pin|C_Pin|D_Pin
@@ -227,6 +234,7 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef * htim)
 {
+	getKeyInput();
 	SCH_Update();
 }
 /* USER CODE END 4 */

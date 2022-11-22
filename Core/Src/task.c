@@ -29,5 +29,9 @@ void TaskD()
 
 void TaskE()
 {
-	HAL_GPIO_TogglePin(E_GPIO_Port, E_Pin);
+	if(button_flag == 1)
+	{
+		button_flag = 0;
+		HAL_GPIO_TogglePin(E_GPIO_Port, E_Pin);
+	}
 }
