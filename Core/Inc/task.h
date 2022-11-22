@@ -9,6 +9,7 @@
 #define INC_TASK_H_
 
 #include "main.h"
+#include "global.h"
 
 void TaskA(void);
 void TaskB(void);

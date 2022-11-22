@@ -27,16 +27,6 @@
 extern "C" {
 #endif
 
-// Comment t his line out if error reporting is NOT required
-//#define SCH_REPORT_ERRORS
-//Where error reporting is required, the port on which error codes will be displayed
-// is also determined via main.h:
-#ifdef SCH_REPORT_ERRORS
-// The port on which error codes will be displayed
-// ONLY USED IF ERRORS ARE REPORTED
-#define Error_port PORTA
-#endif
-
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f1xx_hal.h"
 
@@ -68,16 +58,16 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define A_Pin 		GPIO_PIN_5
+#define A_Pin GPIO_PIN_5
 #define A_GPIO_Port GPIOA
-#define B_Pin 		GPIO_PIN_6
+#define B_Pin GPIO_PIN_6
 #define B_GPIO_Port GPIOA
-#define C_Pin 		GPIO_PIN_7
+#define C_Pin GPIO_PIN_7
 #define C_GPIO_Port GPIOA
-#define D_Pin 		GPIO_PIN_0
-#define D_GPIO_Port GPIOB
-#define E_Pin 		GPIO_PIN_1
-#define E_GPIO_Port GPIOB
+#define D_Pin GPIO_PIN_8
+#define D_GPIO_Port GPIOA
+#define E_Pin GPIO_PIN_9
+#define E_GPIO_Port GPIOA
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

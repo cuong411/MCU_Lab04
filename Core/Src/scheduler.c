@@ -15,9 +15,9 @@ void SCH_Init(void)
 	{
 		SCH_Delete_Task(i);
 	}
-	//Error_code_G = 0;
-	//Timer_init();
-	//Watchdog_init();
+//	Error_code_G = 0;
+//	Timer_init();
+//	Watchdog_init();
 }
 
 void SCH_Update(void)
@@ -47,6 +47,30 @@ void SCH_Update(void)
 	}
 }
 
+void SCH_Dispatch_Tasks(void)
+{
+	unsigned char index;
+	// run the next task if it is ready
+	for(index = 0; index < SCH_MAX_TASKS; index++)
+	{
+		if(SCH_tasks_G[index].RunMe > 0)
+		{
+			// run the task
+			(* SCH_tasks_G[index].pTask)();
+			// reset the run flag
+			SCH_tasks_G[index].RunMe -= 1;
+			// if this is a 'one shot' task, remove it
+			if(SCH_tasks_G[index].Period == 0)
+			{
+				SCH_Delete_Task(index);
+			}
+		}
+	}
+	// report the system status, scheduler enters idle mode
+//	SCH_Report_status();
+//	SCH_Go_To_Sleep();
+}
+
 // this function causes a task (function) to be execute at regular intervals or after a user-defined delay
 uint32_t SCH_Add_Task(void (* pFunction)(), unsigned int DELAY, unsigned int PERIOD)
 {
@@ -68,42 +92,18 @@ uint32_t SCH_Add_Task(void (* pFunction)(), unsigned int DELAY, unsigned int PER
 	SCH_tasks_G[index].Delay = DELAY;
 	SCH_tasks_G[index].Period = PERIOD;
 	SCH_tasks_G[index].RunMe = 0;
-	//SCH_tasks_G[index].TaskID = index;
+//	SCH_tasks_G[index].TaskID = index;
 	// return the location of the added task
 	return index;
 }
 
-void SCH_Dispatch_Tasks(void)
-{
-	unsigned char index;
-	// run the next task if it is ready
-	for(index = 0; index < SCH_MAX_TASKS; index++)
-	{
-		if(SCH_tasks_G[index].RunMe > 0)
-		{
-			// run the task
-			(* SCH_tasks_G[index].pTask)();
-			// reset the run flag
-			SCH_tasks_G[index].RunMe -= 1;
-			// if this is a 'one shot' task, remove it
-			if(SCH_tasks_G[index].Period == 0)
-			{
-				SCH_Delete_Task(index);
-			}
-		}
-	}
-	// report the system status, scheduler enters idle mode
-	//SCH_Report_status();
-	//SCH_Go_To_Sleep();
-}
-
-uint8_t SCH_Delete_Task(const tByte TASK_INDEX)
+uint8_t SCH_Delete_Task(const uint8_t TASK_INDEX)
 {
 	unsigned char Return_code;
 	if(SCH_tasks_G[TASK_INDEX].pTask == 0)
 	{
 		// no task detected
-		//Error_code_G = ERROR_SCH_CANNOT_DELETE_TASK;
+//		Error_code_G = ERROR_SCH_CANNOT_DELETE_TASK;
 		Return_code = RETURN_ERROR;
 	}
 	else

@@ -1,0 +1,5 @@
+task.c:10:6:TaskA	8	static
+task.c:15:6:TaskB	8	static
+task.c:20:6:TaskC	8	static
+task.c:25:6:TaskD	8	static
+task.c:30:6:TaskE	8	static

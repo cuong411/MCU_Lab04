@@ -9,6 +9,8 @@
 #define INC_SCHEDULER_H_
 
 #include "global.h"
+#include "main.h"
+#include "task.h"
 
 typedef struct sTask
 {
@@ -26,13 +28,13 @@ typedef struct sTask
 
 #define SCH_MAX_TASKS	40
 #define NO_TASK_ID		0
-sTask SCH_tasks_G[SCH_MAX_TASKS];
+struct sTask SCH_tasks_G[SCH_MAX_TASKS];
 
 void SCH_Init(void);
 void SCH_Update(void);
 uint32_t SCH_Add_Task(void (* pFunction)(), unsigned int DELAY, unsigned int PERIOD);
 void SCH_Dispatch_Tasks(void);
-uint8_t SCH_Delete_Task(const tByte TASK_INDEX);
+uint8_t SCH_Delete_Task(const uint8_t TASK_INDEX);
 //void SCH_Report_Status(void);
 //void SCH_Go_To_Sleep();
 
